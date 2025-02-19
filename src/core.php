@@ -5,7 +5,8 @@
     $dados = recuperDadosRequest();
     $agendamentos = new Agendamentos;
 
-    if( $dados['acaoAjax'] === "buscarHorarios" ) { return $agendamentos->carregarHorariosParametrizados(); }
+    if( $dados['acaoAjax'] === "buscarHorarioPorData" ) { return $agendamentos->buscarHorarioPorData($dados); }
+    if( $dados['acaoAjax'] === "montarOptionProcedimento" ) { return $agendamentos->montarOptionProcedimento(); }
     
     function recuperDadosRequest() {
 

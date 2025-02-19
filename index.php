@@ -1,3 +1,5 @@
+<?php date_default_timezone_set('America/Sao_Paulo'); ?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
     <head>
@@ -8,10 +10,49 @@
     </head>
 
     <body>
-
         <div class="container mt-3">
-            <div class="textos text-center mb-3">
-                <h1 class="mb-2">Agendamentos</h1>
+            <div class="">
+                <h3 class="text-center mb-3">Agendamento</h3>
+
+                <div class="container mt-4">
+                    <div class="row">
+                        <!-- Formulário de Agendamento -->
+                        <div class="col-md-6">
+                            <div class="card p-4 shadow-sm">
+                                <label class="mb-3">Selecione o Procedimento:</label>
+                                <div class="input-group mb-3">
+                                    <select class="form-control" name="" id="procedimentos"></select>
+                                </div>
+
+                                <label class="mb-3">Selecione a Data</label>
+                                <div class="input-group mb-3">
+                                    <input type="date" min="<?= date('Y-m-d') ?>" id="dataAgendamento" class="form-control" />
+                                    <div class="input-group-append">
+                                        <button class="btn btn-primary" id="buscarHorarios"><i class="fas fa-search"></i> 🔍</button>
+                                    </div>
+                                </div>
+
+                                <!-- Botões de Horários Disponíveis -->
+                                <div id="horarios" class="d-flex flex-wrap gap-2"></div>
+                            </div>
+                        </div>
+
+                        <!-- Ficha de Agendamento -->
+                        <div class="col-md-6">
+                            <div class="card p-4 shadow-sm">
+                                <h4 class="text-center mb-3">Ficha de Agendamento</h4>
+
+                                <p><strong>Cliente:</strong> <span id="clienteNome">--</span></p>
+                                <p><strong>Data:</strong> <span id="fichaData">--</span></p>
+                                <p><strong>Horário:</strong> <span id="fichaHorario">--</span></p>
+                                <p><strong>Procedimento:</strong> <span id="fichaProcedimento">--</span></p>
+                                <p><strong>Valor:</strong> R$ <span id="fichaValor">--</span></p>
+
+                                <button class="btn btn-success btn-block mt-3">Confirmar Agendamento</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -23,6 +64,5 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
         <script type="module" src="assets/js/main.js?v=<?= time() ?>"></script>
-
     </body>
 </html>
