@@ -7,6 +7,7 @@
 
     if( $dados['acaoAjax'] === "buscarHorarioPorData" ) { return $agendamentos->buscarHorarioPorData($dados); }
     if( $dados['acaoAjax'] === "montarOptionProcedimento" ) { return $agendamentos->montarOptionProcedimento(); }
+    if( $dados['acaoAjax'] === "salvarAgendamento" ) { return $agendamentos->salvarAgendamento($dados); }
     
     function recuperDadosRequest() {
 

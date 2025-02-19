@@ -5,6 +5,7 @@ async function init() {
     montarOptionProcedimento();
     preencherFichaAgendamento();
     buscarHorarioPorData();
+    confirmarAgendamento();
 }
 
 function buscarHorarioPorData() {
@@ -19,6 +20,7 @@ function buscarHorarioPorData() {
         }
 
         document.getElementById("fichaData").innerText = dataSelecionada;
+        document.getElementById("fichaHorario").innerText = "";
 
         montarOptionHorarios(dataSelecionada);
 
@@ -42,7 +44,7 @@ async function montarOptionProcedimento() {
 
         retornoBD.forEach(procedimento => {
         
-            html += `<option data-preco="${procedimento.preco}" value="${procedimento.nome}">${procedimento.nome}</option>`;
+            html += `<option data-preco="${procedimento.preco_procedimento}" value="${procedimento.id_procedimento}">${procedimento.nome_procedimento}</option>`;
             
         });        
 
@@ -112,4 +114,63 @@ function preencherFichaAgendamento() {
 
     });
 
+}
+
+function confirmarAgendamento() {
+
+    document.getElementById("confirmarAgendamento").addEventListener("click", function () {
+
+        const clienteId = document.getElementById("idCliente").value;
+
+        const data = document.getElementById("fichaData").textContent;
+        if( data == "--" ) {
+            alert('Escolha uma data');
+            return;
+        }
+
+        const horario = document.getElementById("fichaHorario").textContent;
+        if( horario == "--" ) {
+            alert('Escolha um hoáario');
+            return;
+        }
+
+        const procedimento = document.getElementById("procedimentos").value;
+        alert(procedimento)
+        if( procedimento == "" ) {
+            alert('Selecione um procedimento');
+            return;
+        }
+
+        const acaoAjax = "salvarAgendamento";
+        const dadosAgendamento = { clienteId, data, horario, procedimento, acaoAjax };
+
+        salvarAgendamento(dadosAgendamento);
+
+    });
+
+}
+
+async function salvarAgendamento(dadosAgendamento) {
+    try {
+        const url = "src/core.php?";
+
+        let response = await fetch(url, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(dadosAgendamento) // Convertendo objeto JS para JSON
+        });
+
+        let data = await response.json();
+
+        if (data.success) {
+            alert("Agendamento salvo com sucesso!");
+            location.reload();
+        } else {
+            alert("Erro: " + data.message);
+        }
+    } catch (error) {
+        alert("Erro ao enviar os dados!");
+    }
 }

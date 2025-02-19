@@ -38,6 +38,14 @@ class Agendamentos
         print_r(json_encode(array_values($arrayHorariosDisponiveis)));
     }
 
+    public function salvarAgendamento($dados)
+    {
+
+        $horariosParametrizados = $this->agendamentos->salvarAgendamento($dados);
+
+        print_r(json_encode($horariosParametrizados));
+    }
+
     private function validarDiaSemana($arrayDataEspecifica, $dataSelecionada)
     {
         if (array_key_exists($dataSelecionada, $arrayDataEspecifica)) {
@@ -61,7 +69,7 @@ class Agendamentos
 
         $arrayHorarios = [];
 
-        while ($horaInicio < $horaFim) {
+        while ($horaInicio <= $horaFim) {
 
             if ($dataSelecionada !== date('Y-m-d') || $horaInicio >= $horaAtual) {
                 $arrayHorarios[] = date('H:i', $horaInicio);

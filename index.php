@@ -19,6 +19,11 @@
                         <!-- Formulário de Agendamento -->
                         <div class="col-md-6">
                             <div class="card p-4 shadow-sm">
+
+                                <div class="input-group mb-3">
+                                    <input type="text" id="idCliente" value="1" class="form-control" />
+                                </div>
+
                                 <label class="mb-3">Selecione o Procedimento:</label>
                                 <div class="input-group mb-3">
                                     <select class="form-control" name="" id="procedimentos"></select>
@@ -42,13 +47,13 @@
                             <div class="card p-4 shadow-sm">
                                 <h4 class="text-center mb-3">Ficha de Agendamento</h4>
 
-                                <p><strong>Cliente:</strong> <span id="clienteNome">--</span></p>
-                                <p><strong>Data:</strong> <span id="fichaData">--</span></p>
-                                <p><strong>Horário:</strong> <span id="fichaHorario">--</span></p>
+                                <p><strong>Cliente:</strong> <span id="clienteNome">Felipe Neves</span></p>
                                 <p><strong>Procedimento:</strong> <span id="fichaProcedimento">--</span></p>
                                 <p><strong>Valor:</strong> R$ <span id="fichaValor">--</span></p>
+                                <p><strong>Data:</strong> <span id="fichaData">--</span></p>
+                                <p><strong>Horário:</strong> <span id="fichaHorario">--</span></p>
 
-                                <button class="btn btn-success btn-block mt-3">Confirmar Agendamento</button>
+                                <button class="btn btn-success btn-block mt-3" id="confirmarAgendamento">Confirmar Agendamento</button>
                             </div>
                         </div>
                     </div>

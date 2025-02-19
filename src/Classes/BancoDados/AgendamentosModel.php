@@ -54,6 +54,21 @@ class AgendamentosModel {
         return $this->hydrateHorariosParametrizados($dados);
     }
 
+    public function salvarAgendamento($dados)
+    {
+
+        $sql = "INSERT INTO agendamentos (id_cliente, data_agendado, hora_agendado, id_procedimento) VALUES ('{$dados['clienteId']}', '{$dados['data']}', '{$dados['horario']}', '{$dados['procedimento']}')";
+    
+        $stmt = $this->conexao->prepare($sql);
+    
+        if ($stmt->execute()) {
+            return ['success' => true, 'message' => 'Agendamento salvo com sucesso!'];
+        } else {
+            return ['success' => false, 'message' => 'Erro ao salvar o agendamento!'];
+        }
+    }
+    
+
     private function hydrateHorariosParametrizados($horarioParametrizado)
     {
 
